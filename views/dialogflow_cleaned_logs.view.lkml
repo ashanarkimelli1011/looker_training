@@ -116,11 +116,6 @@ view: dialogflow_cleaned_logs {
     sql:  ${TABLE}.time_stamp ;;
   }
 
-  measure:avg_call_duration {
-    type:number
-    sql:sum(TIMESTAMP_DIFF(${max_timestamp},${min_timestamp},second));;
-    value_format: "HH:MM:SS"
-  }
   measure: count {
     type: count
     drill_fields: []
