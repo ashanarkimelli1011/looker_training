@@ -151,4 +151,39 @@ view: dialogflow_cleaned_logs {
     sql: ${distinct_session_count}/${distinct_dates_count} ;;
     value_format: "0"
   }
+
+  measure: avg_sentiment_score{
+    type: average
+    sql: ${sentiment_score} ;;
+    value_format: "0.000"
+  }
+
+  measure: count_fallback_queries {
+    label: "Total_Unhandled_Queries"
+    type: count_distinct
+    sql: ${response_id} ;;
+    filters: [intent_triggered: "Default Fallback Intent%"]
+  }
+
+  measure: count_handled_queries {
+    label: "Total_Handled_Queries"
+    type: count_distinct
+    sql: ${response_id} ;;
+    filters: [intent_triggered: "-Default Fallback Intent%"]
+  }
+
+  measure: success_rate {
+    type: number
+    sql: sum(if(${is_fallback},0,1))/${count} ;;
+    value_format_name: percent_2
+  }
+
+  measure: queries_count {
+    type: count_distinct
+    sql: ${response_id} ;;
+  }
+  measure: avg_queries_per_session {
+    type: number
+    sql:  ${queries_count} / NULLIF(${distinct_session_count},0) ;;
+  }
 }
