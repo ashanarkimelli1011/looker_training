@@ -118,7 +118,7 @@ view: dialogflow_cleaned_logs {
 
   measure:avg_call_duration {
     type:number
-    sql:sum(datediff(sec,${max_timestamp},${min_timestamp} )/(60.0*60*24));;
+    sql:sum(TIMESTAMP_DIFF(sec,${max_timestamp},${min_timestamp} )/(60.0*60*24));;
     value_format: "HH:MM:SS"
   }
   measure: count {
