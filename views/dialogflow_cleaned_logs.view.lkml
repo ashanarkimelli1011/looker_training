@@ -157,14 +157,20 @@ view: dialogflow_cleaned_logs {
     label: "Total_Unhandled_Queries"
     type: count_distinct
     sql: ${response_id} ;;
-    filters: [is_fallback: "true"]
+    filters: {
+      field: is_fallback
+      value: "True"
+    }
   }
 
   measure: count_handled_queries {
     label: "Total_Handled_Queries"
     type: count_distinct
     sql: ${response_id} ;;
-    filters: [is_fallback: "false"]
+    filters: {
+      field: is_fallback
+      value: "False"
+    }
   }
 
   measure: success_rate {
