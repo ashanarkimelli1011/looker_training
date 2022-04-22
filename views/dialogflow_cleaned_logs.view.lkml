@@ -176,7 +176,8 @@ view: dialogflow_cleaned_logs {
   measure: success_rate {
     type: number
     sql: sum(if(${is_fallback},0,1))/${count} ;;
-    value_format_name: percent_2
+    value_format_name: percent_0
+
   }
 
   measure: queries_count {
