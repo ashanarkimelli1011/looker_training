@@ -106,6 +106,31 @@ view: dialogflow_cleaned_logs {
     sql: ${TABLE}.week_number ;;
   }
 
+  dimension:  grouping_of_hours{
+    sql: CASE WHEN extract(hour from ${time_stamp_raw})>=00 and extract(hour from ${time_stamp_raw})<02 THEN "12am-2am"
+          WHEN extract(hour from ${time_stamp_raw})>=02 and extract(hour from ${time_stamp_raw})<04 THEN "2am-4am"
+          WHEN extract(hour from ${time_stamp_raw})>=04 and extract(hour from ${time_stamp_raw})<06 THEN "4am-6am"
+          WHEN extract(hour from ${time_stamp_raw})>=06 and extract(hour from ${time_stamp_raw})<08 THEN "6am-8am"
+          WHEN extract(hour from ${time_stamp_raw})>=08 and extract(hour from ${time_stamp_raw})<10 THEN "8am-10am"
+          WHEN extract(hour from ${time_stamp_raw})>=10 and extract(hour from ${time_stamp_raw})<12 THEN "10am-12pm"
+          WHEN extract(hour from ${time_stamp_raw})>=12 and extract(hour from ${time_stamp_raw})<14 THEN "12pm-2pm"
+          WHEN extract(hour from ${time_stamp_raw})>=14 and extract(hour from ${time_stamp_raw})<16 THEN "2pm-4pm"
+          WHEN extract(hour from ${time_stamp_raw})>=16 and extract(hour from ${time_stamp_raw})<18 THEN "4pm-6pm"
+          WHEN extract(hour from ${time_stamp_raw})>=18 and extract(hour from ${time_stamp_raw})<20 THEN "6pm-8pm"
+          WHEN extract(hour from ${time_stamp_raw})>=20 and extract(hour from ${time_stamp_raw})<22 THEN "8pm-10pm"
+          ELSE "10pm-12am"
+          END ;;
+  }
+
+  dimension: sentiment_bucketing{
+    sql: CASE WHEN ${magnitude} > 3 and ${sentiment_score} between 0.25 and 1 THEN '1. Positive'
+          WHEN ${magnitude} <= 3 and ${sentiment_score} between 0.25 and 1 THEN '2. Partially Positive'
+          WHEN ${magnitude} <= 3 and ${sentiment_score} between -1 and -0.25 THEN '4. Partially Negative'
+          WHEN ${magnitude} > 3 and ${sentiment_score} between -1 and -0.25 THEN '5. Negative'
+          ELSE "3. Neutral"
+          END ;;
+  }
+
   measure: max_timestamp {
     type: max
     sql:  ${TABLE}.time_stamp ;;
