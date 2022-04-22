@@ -159,7 +159,7 @@ view: dialogflow_cleaned_logs {
     sql: ${response_id} ;;
     filters: {
       field: is_fallback
-      value: "True"
+      value: "Yes"
     }
   }
 
@@ -169,7 +169,7 @@ view: dialogflow_cleaned_logs {
     sql: ${response_id} ;;
     filters: {
       field: is_fallback
-      value: "False"
+      value: "No"
     }
   }
 
