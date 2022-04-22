@@ -110,4 +110,19 @@ view: dialogflow_cleaned_logs {
     type: count
     drill_fields: []
   }
+
+  measure: distinct_session_count {
+    type: count_distinct
+    sql: ${session_id} ;;
+  }
+
+  measure: fallback_count {
+    type: count
+    filters: [is_fallback: "Yes"]
+  }
+
+  measure: percent_fallback {
+    type: number
+    sql: ${fallback_count}/${distinct_session_count} ;;
+  }
 }
