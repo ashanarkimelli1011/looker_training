@@ -106,6 +106,21 @@ view: dialogflow_cleaned_logs {
     sql: ${TABLE}.week_number ;;
   }
 
+  measure: max_timestamp {
+    type: max
+    sql:  ${TABLE}.time_stamp ;;
+  }
+
+  measure: min_timestamp {
+    type: min
+    sql:  ${TABLE}.time_stamp ;;
+  }
+
+  measure:avg_call_duration {
+    type:number
+    sql:sum(datediff(sec,${max_timestamp},${min_timestamp} )/(60.0*60*24));;
+    value_format: "HH:MM:SS"
+  }
   measure: count {
     type: count
     drill_fields: []
@@ -135,21 +150,5 @@ view: dialogflow_cleaned_logs {
     type: number
     sql: ${distinct_session_count}/${distinct_dates_count} ;;
     value_format: "0"
-  }
-
-  measure: max_timestamp {
-    type: max
-    sql: ${time_stamp_time} ;;
-  }
-
-  measure: min_timestamp {
-    type: min
-    sql: ${time_stamp_time} ;;
-  }
-
-  measure:my_time_difference {
-  type:number
-  sql:datediff(sec,${max_timestamp},${min_timestamp} )/(60.0*60*24);;
-  value_format: "HH:MM:SS"
   }
 }
