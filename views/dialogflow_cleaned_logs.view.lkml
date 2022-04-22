@@ -125,4 +125,14 @@ view: dialogflow_cleaned_logs {
     type: number
     sql: ${fallback_count}/${distinct_session_count} ;;
   }
+
+  measure: distinct_dates_count {
+    type: count_distinct
+    sql: ${date_date} ;;
+  }
+
+  measure: avg_sessions_per_day {
+    type: number
+    sql: ${distinct_session_count}/${distinct_dates_count} ;;
+  }
 }
