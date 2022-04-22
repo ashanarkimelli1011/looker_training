@@ -157,14 +157,14 @@ view: dialogflow_cleaned_logs {
     label: "Total_Unhandled_Queries"
     type: count_distinct
     sql: ${response_id} ;;
-    filters: [intent_triggered: "Default Fallback Intent%"]
+    filters: [is_fallback: "true"]
   }
 
   measure: count_handled_queries {
     label: "Total_Handled_Queries"
     type: count_distinct
     sql: ${response_id} ;;
-    filters: [intent_triggered: "-Default Fallback Intent%"]
+    filters: [is_fallback: "false"]
   }
 
   measure: success_rate {
