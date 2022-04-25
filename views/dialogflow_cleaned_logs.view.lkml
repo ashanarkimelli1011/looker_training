@@ -149,9 +149,12 @@ view: dialogflow_cleaned_logs {
           WHEN extract(hour from ${time_stamp_raw})>=22 and extract(hour from ${time_stamp_raw})<23 THEN "10pm-11pm"
           WHEN extract(hour from ${time_stamp_raw})>=23 and extract(hour from ${time_stamp_raw})<24 THEN "11pm-12am"
           END ;;
-          order_by_field: time_stamp_raw
+          order_by_field: time_stamp_hour
   }
 
+  dimension: time_stamp_hour{
+    sql: extract(hour from ${time_stamp_raw}) ;;
+  }
 
   dimension: sentiment_bucketing{
     sql: CASE WHEN ${magnitude} > 3 and ${sentiment_score} between 0.25 and 1 THEN '1. Positive'
