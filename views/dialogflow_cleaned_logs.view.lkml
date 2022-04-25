@@ -153,6 +153,7 @@ view: dialogflow_cleaned_logs {
   }
 
   dimension: time_stamp_hour{
+    type: number
     sql: extract(hour from ${time_stamp_raw}) ;;
   }
 
