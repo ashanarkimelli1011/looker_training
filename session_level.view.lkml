@@ -1,4 +1,4 @@
-view: session_level_view {
+view: session_level {
   sql_table_name: `qp-qai-training-1-2021-05.looker_training_asha.session_level_view`
     ;;
 
