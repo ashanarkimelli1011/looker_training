@@ -122,6 +122,34 @@ view: dialogflow_cleaned_logs {
           END ;;
   }
 
+  dimension:  grouping_of_hourly_basis{
+    sql: CASE WHEN extract(hour from ${time_stamp_raw})>=00 and extract(hour from ${time_stamp_raw})<01 THEN "12am-1am"
+          WHEN extract(hour from ${time_stamp_raw})>=01 and extract(hour from ${time_stamp_raw})<02 THEN "1am-2am"
+          WHEN extract(hour from ${time_stamp_raw})>=02 and extract(hour from ${time_stamp_raw})<03 THEN "2am-3am"
+          WHEN extract(hour from ${time_stamp_raw})>=03 and extract(hour from ${time_stamp_raw})<04 THEN "3am-4am"
+          WHEN extract(hour from ${time_stamp_raw})>=04 and extract(hour from ${time_stamp_raw})<05 THEN "4am-5am"
+          WHEN extract(hour from ${time_stamp_raw})>=05 and extract(hour from ${time_stamp_raw})<06 THEN "5am-6am"
+          WHEN extract(hour from ${time_stamp_raw})>=06 and extract(hour from ${time_stamp_raw})<07 THEN "6am-7am"
+          WHEN extract(hour from ${time_stamp_raw})>=07 and extract(hour from ${time_stamp_raw})<08 THEN "7am-8am"
+          WHEN extract(hour from ${time_stamp_raw})>=08 and extract(hour from ${time_stamp_raw})<09 THEN "8am-9am"
+          WHEN extract(hour from ${time_stamp_raw})>=09 and extract(hour from ${time_stamp_raw})<10 THEN "9am-10am"
+          WHEN extract(hour from ${time_stamp_raw})>=10 and extract(hour from ${time_stamp_raw})<11 THEN "10am-11am"
+          WHEN extract(hour from ${time_stamp_raw})>=11 and extract(hour from ${time_stamp_raw})<12 THEN "11am-12pm"
+          WHEN extract(hour from ${time_stamp_raw})>=12 and extract(hour from ${time_stamp_raw})<13 THEN "12pm-1pm"
+          WHEN extract(hour from ${time_stamp_raw})>=13 and extract(hour from ${time_stamp_raw})<14 THEN "1pm-2pm"
+          WHEN extract(hour from ${time_stamp_raw})>=14 and extract(hour from ${time_stamp_raw})<15 THEN "2pm-3pm"
+          WHEN extract(hour from ${time_stamp_raw})>=15 and extract(hour from ${time_stamp_raw})<16 THEN "3pm-4pm"
+          WHEN extract(hour from ${time_stamp_raw})>=16 and extract(hour from ${time_stamp_raw})<17 THEN "4pm-5pm"
+          WHEN extract(hour from ${time_stamp_raw})>=17 and extract(hour from ${time_stamp_raw})<18 THEN "5pm-6pm"
+          WHEN extract(hour from ${time_stamp_raw})>=18 and extract(hour from ${time_stamp_raw})<19 THEN "6pm-7pm"
+          WHEN extract(hour from ${time_stamp_raw})>=19 and extract(hour from ${time_stamp_raw})<20 THEN "7pm-8pm"
+          WHEN extract(hour from ${time_stamp_raw})>=20 and extract(hour from ${time_stamp_raw})<21 THEN "9pm-10pm"
+          WHEN extract(hour from ${time_stamp_raw})>=21 and extract(hour from ${time_stamp_raw})<22 THEN "10pm-11pm"
+          WHEN extract(hour from ${time_stamp_raw})>=22 and extract(hour from ${time_stamp_raw})<23 THEN "11pm-12am"
+          ELSE "00"
+          END ;;
+  }
+
   dimension: sentiment_bucketing{
     sql: CASE WHEN ${magnitude} > 3 and ${sentiment_score} between 0.25 and 1 THEN '1. Positive'
           WHEN ${magnitude} <= 3 and ${sentiment_score} between 0.25 and 1 THEN '2. Partially Positive'
