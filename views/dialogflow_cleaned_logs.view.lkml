@@ -143,10 +143,10 @@ view: dialogflow_cleaned_logs {
           WHEN extract(hour from ${time_stamp_raw})>=17 and extract(hour from ${time_stamp_raw})<18 THEN "5pm-6pm"
           WHEN extract(hour from ${time_stamp_raw})>=18 and extract(hour from ${time_stamp_raw})<19 THEN "6pm-7pm"
           WHEN extract(hour from ${time_stamp_raw})>=19 and extract(hour from ${time_stamp_raw})<20 THEN "7pm-8pm"
-          WHEN extract(hour from ${time_stamp_raw})>=20 and extract(hour from ${time_stamp_raw})<21 THEN "9pm-10pm"
-          WHEN extract(hour from ${time_stamp_raw})>=21 and extract(hour from ${time_stamp_raw})<22 THEN "10pm-11pm"
-          WHEN extract(hour from ${time_stamp_raw})>=22 and extract(hour from ${time_stamp_raw})<23 THEN "11pm-12am"
-          ELSE "00"
+          WHEN extract(hour from ${time_stamp_raw})>=20 and extract(hour from ${time_stamp_raw})<21 THEN "8pm-9pm"
+          WHEN extract(hour from ${time_stamp_raw})>=21 and extract(hour from ${time_stamp_raw})<22 THEN "9pm-10pm"
+          WHEN extract(hour from ${time_stamp_raw})>=22 and extract(hour from ${time_stamp_raw})<23 THEN "10pm-11pm"
+          WHEN extract(hour from ${time_stamp_raw})>=23 and extract(hour from ${time_stamp_raw})<24 THEN "11pm-12am"
           END ;;
   }
 
