@@ -67,8 +67,6 @@ view: session_level_view {
     sql: ${TABLE}.session_ID ;;
   }
 
-
-
   measure: count {
     type: count
     drill_fields: []
