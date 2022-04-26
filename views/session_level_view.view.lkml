@@ -82,6 +82,12 @@ view: session_level_view {
     value_format: "0.000"
   }
 
+  measure: total_queries {
+    type: sum
+    sql: ${count_of_msg};;
+    value_format: "0"
+  }
+
   measure: distinct_session_count {
     type: count_distinct
     sql: ${session_id} ;;
