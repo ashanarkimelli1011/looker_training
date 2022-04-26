@@ -76,6 +76,10 @@ view: session_level_view {
           END ;;
   }
 
+  measure: distinct_session_count {
+    type: count_distinct
+    sql: ${session_id} ;;
+  }
   measure: count {
     type: count
     drill_fields: []
