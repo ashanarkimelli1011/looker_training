@@ -11,3 +11,4 @@ datagroup: asha_looker_training_default_datagroup {
 persist_with: asha_looker_training_default_datagroup
 
 explore: dialogflow_cleaned_logs {}
+explore: session_level_view {}
