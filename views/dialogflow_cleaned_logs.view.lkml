@@ -74,7 +74,7 @@ view: dialogflow_cleaned_logs {
 
   dimension: sentiment_score {
     type: number
-    sql: ${TABLE}.sentiment_score ;;
+    sql: IFNULL(${TABLE}.sentiment_score, 0) ;;
   }
 
   dimension: session_id {
