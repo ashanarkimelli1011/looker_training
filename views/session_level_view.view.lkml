@@ -76,6 +76,12 @@ view: session_level_view {
           END ;;
   }
 
+  measure: avg_sentiment_score{
+    type: average
+    sql: ${sentiment_score} ;;
+    value_format: "0.000"
+  }
+
   measure: distinct_session_count {
     type: count_distinct
     sql: ${session_id} ;;
