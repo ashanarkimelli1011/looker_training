@@ -107,6 +107,29 @@ view: session_level_view {
     }
   }
 
+  dimension: deflection {
+    case: {
+      when: {
+        sql: ${TABLE}.IsTransferred ="0" and ${TABLE}.NotDeflectedFlag =0 and IsFallbackFlag="0";;
+        label: "Number of sessions that were successfully handled with bot end to end"
+      }
+      when: {
+        sql: ${TABLE}.IsTransferred ="0" and ${TABLE}.NotDeflectedFlag =0 and IsFallbackFlag="1";;
+        label: "Handled by the bot/had at least one query unanswered/not transferred to live agent"
+      }
+      when: {
+        sql: ${TABLE}.IsTransferred ="1" and ${TABLE}.NotDeflectedFlag =0;;
+        label: "Transferred to live agent/has at least one fallback query/i.e.bot not able to answer"
+      }
+
+      when: {
+        sql: ${TABLE}.NotDeflectedFlag =2;;
+        label: "Transferred to live agent as per the expected flow but had not fallback query"
+      }
+
+    }
+  }
+
   measure: distinct_session_count {
     type: count_distinct
     sql: ${session_id} ;;
