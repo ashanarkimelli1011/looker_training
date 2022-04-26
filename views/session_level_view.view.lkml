@@ -88,6 +88,25 @@ view: session_level_view {
     value_format: "0"
   }
 
+  dimension: deflection_rate {
+    case: {
+      when: {
+        sql: ${TABLE}.IsTransferred ="0" and ${TABLE}.NotDeflectedFlag =0;;
+        label: "Fully Deflected"
+      }
+      when: {
+        sql: ${TABLE}.IsTransferred ="1" and ${TABLE}.NotDeflectedFlag =0;;
+        label: "Partially Deflected"
+      }
+
+      when: {
+        sql: ${TABLE}.NotDeflectedFlag =2;;
+        label: "Not Deflected"
+      }
+
+    }
+  }
+
   measure: distinct_session_count {
     type: count_distinct
     sql: ${session_id} ;;
