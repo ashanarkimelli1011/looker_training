@@ -52,6 +52,11 @@ view: session_level_view {
     sql: ${TABLE}.IsFallbackFlag ;;
   }
 
+  dimension: IsTransferred {
+    type: number
+    sql: ${TABLE}.IsTransferred ;;
+  }
+
   dimension: platform {
     type: string
     sql: ${TABLE}.platform ;;
