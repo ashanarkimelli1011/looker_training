@@ -79,6 +79,16 @@ view: session_level_view {
           WHEN ${conversation_length_in_seconds}>=300 and ${conversation_length_in_seconds}<420 THEN "5-7 min"
           ELSE ">7 min"
           END ;;
+          order_by_field: duration_grouped_ordered
+  }
+
+  dimension:  duration_grouped_ordered{
+    sql: CASE WHEN ${conversation_length_in_seconds}<60 THEN 1
+          WHEN ${conversation_length_in_seconds}>=60 and ${conversation_length_in_seconds}<180 THEN 2
+          WHEN ${conversation_length_in_seconds}>=180 and ${conversation_length_in_seconds}<300 THEN 3
+          WHEN ${conversation_length_in_seconds}>=300 and ${conversation_length_in_seconds}<420 THEN 4
+          ELSE 5
+          END ;;
   }
 
   measure: avg_sentiment_score{
