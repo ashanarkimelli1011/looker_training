@@ -245,10 +245,6 @@ view: dialogflow_cleaned_logs {
     sql: ${response_id} ;;
   }
 
-  measure: duration {
-    type: number
-    sql: ${max_timestamp}-${min_timestamp} ;;
-  }
 
   measure: avg_queries_per_session {
     type: number
