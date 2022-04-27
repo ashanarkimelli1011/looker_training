@@ -16,7 +16,6 @@ ORDER BY
 
 
 dimension: average_call_duration {
-  sql: (${TABLE}.duration/86400.0) ;;
-  value_format: "[mm]\" m \"ss\" s\""
+  sql: (${TABLE}.duration) ;;
 }
 }
