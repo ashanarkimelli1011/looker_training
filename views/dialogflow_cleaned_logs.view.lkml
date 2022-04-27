@@ -236,8 +236,6 @@ view: dialogflow_cleaned_logs {
   measure: total_queries {
     type: number
     sql: ${count_handled_queries} + ${count_fallback_queries} ;;
-    value_format_name: percent_0
-
   }
 
   measure: success_rate {
