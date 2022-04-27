@@ -244,6 +244,7 @@ view: dialogflow_cleaned_logs {
     type: count_distinct
     sql: ${response_id} ;;
   }
+
   measure: avg_queries_per_session {
     type: number
     sql:  ${queries_count} / NULLIF(${distinct_session_count},0) ;;
