@@ -247,7 +247,8 @@ view: dialogflow_cleaned_logs {
 
   measure: duration {
     type: number
-    sql: ${max_timestamp}-${min_timestamp} ;;
+    sql: TIMESTAMP_DIFF(max(${time_stamp_raw}), min(${time_stamp_raw}), SECOND) ;;
+    group_label: "${session_id}"
   }
 
   measure: avg_queries_per_session {
