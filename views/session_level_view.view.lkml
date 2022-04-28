@@ -103,6 +103,17 @@ view: session_level_view {
     value_format: "0"
   }
 
+  measure: total_conversation_duration {
+    type: sum
+    sql: ${conversation_length_in_seconds}/60;;
+  }
+
+  measure: avg_call_conversation_duration {
+    type: number
+    sql: ${total_conversation_duration}/${distinct_session_count};;
+    value_format: "[mm]\" m \"ss\" s\""
+  }
+
   dimension: deflection_rate {
     case: {
       when: {
