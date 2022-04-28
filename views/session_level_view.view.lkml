@@ -105,7 +105,7 @@ view: session_level_view {
 
   measure: total_conversation_duration {
     type: sum
-    sql: ${conversation_length_in_minutes}/60;;
+    sql: ${conversation_length_in_seconds}/60;;
   }
 
   measure: avg_call_conversation_duration {
