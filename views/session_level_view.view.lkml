@@ -110,8 +110,8 @@ view: session_level_view {
 
   measure: avg_call_conversation_duration {
     type: number
-    sql: ${total_conversation_duration}/${distinct_session_count};;
-    #value_format: "[mm]\" m \"ss\" s\""
+    sql: (${total_conversation_duration}/${distinct_session_count};;
+    value_format: "[mm]\" m \"ss\" s\""
   }
 
   dimension: deflection_rate {
