@@ -114,6 +114,12 @@ view: session_level_view {
     value_format: "[mm]\" m \"ss\" s\""
   }
 
+  measure: average_Session_duration {
+    type: average
+    sql:(${conversation_length_in_seconds}/86400.0) ;;
+    value_format: "[mm]\" m \"ss\" s\""
+  }
+
   dimension: deflection_rate {
     case: {
       when: {
