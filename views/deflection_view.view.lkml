@@ -18,6 +18,7 @@ view: deflection_view {
     when ${is_fallback}=0 and ${agent_transfer}=0 then "Fully Deflected"
     when ${is_fallback}=0 and ${agent_transfer}=1 then "Not Deflected"
     else "Partially Deflected"
+    end
     ;;
   }
 
@@ -28,6 +29,7 @@ view: deflection_view {
           when ${is_fallback}=0 and ${agent_transfer}=1 then "Transferred to live agent as per the expected flow but had not fallback query"
           when ${is_fallback}=1 and ${agent_transfer}=1 then "Transferred to live agent and has at least one fallback query"
           else "Partially handled by the bot and had at least one query unanswered but not transferred to live agent"
+          end
           ;;
   }
 
