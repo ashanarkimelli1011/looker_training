@@ -209,7 +209,7 @@ view: dialogflow_cleaned_logs {
 
   measure: avg_sessions_per_day {
     type: number
-    sql: ${distinct_session_count}/${distinct_dates_count} ;;
+    sql: ${distinct_session_count}/NULLIF(${distinct_dates_count},0) ;;
     value_format: "0"
   }
 
