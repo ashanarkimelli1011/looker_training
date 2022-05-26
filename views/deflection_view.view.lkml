@@ -38,6 +38,20 @@ view: deflection_view {
     sql: ${TABLE}.session_ID ;;
   }
 
+  dimension_group: time_stamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.time_stamp ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
