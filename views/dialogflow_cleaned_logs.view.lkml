@@ -264,7 +264,7 @@ view: dialogflow_cleaned_logs {
 
   measure: avg_queries_per_session {
     type: number
-    sql:  ${queries_count} / NULLIF(${distinct_session_count},0) ;;
+    sql:coalesce(${queries_count} / NULLIF(${distinct_session_count},0),0) ;;
     value_format: "0"
   }
 }
