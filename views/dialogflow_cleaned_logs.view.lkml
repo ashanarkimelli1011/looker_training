@@ -215,7 +215,7 @@ view: dialogflow_cleaned_logs {
 
   measure: avg_sentiment_score{
     type: average
-    sql: coalesce(${sentiment_score}) ;;
+    sql: coalesce(${sentiment_score},0) ;;
     value_format: "0.000"
   }
 
