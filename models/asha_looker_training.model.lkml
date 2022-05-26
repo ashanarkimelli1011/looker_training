@@ -22,4 +22,3 @@ explore: session_level_view {}
 explore: intent_cooccurances {}
 explore: avg_call_duration {}
 explore: raw_deflection {}
-explore: deflection_view {}
