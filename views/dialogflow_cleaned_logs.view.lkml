@@ -191,6 +191,12 @@ view: dialogflow_cleaned_logs {
     filters: [is_fallback: "Yes"]
   }
 
+  measure: agent_count {
+    type: sum
+    sql: case when ${intent_triggered} like "LiveAgentTransfer" then 1 else 0  end;;
+
+  }
+
   measure: percent_fallback {
     type: number
     sql: ${fallback_count}/${distinct_session_count} ;;

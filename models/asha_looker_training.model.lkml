@@ -11,10 +11,10 @@ datagroup: asha_looker_training_default_datagroup {
 persist_with: asha_looker_training_default_datagroup
 
 explore: dialogflow_cleaned_logs {
-  join: deflection_view {
+  join: deflect {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${dialogflow_cleaned_logs.session_id}=${deflection_view.session_id};;
+    sql_on: ${dialogflow_cleaned_logs.session_id}=${deflect.session_id};;
 
   }
 }
